@@ -65,7 +65,7 @@ jobs:
       # needs: terraform
     name: Deploy Applications
     runs-on: ubuntu-latest
-    container: banst/awscli:1.17.1
+    container: pslijkhuis/ci-image:0.1
     steps:
       - name: 'Checkout'
         uses: actions/checkout@master
