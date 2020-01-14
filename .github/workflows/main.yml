@@ -78,3 +78,5 @@ jobs:
       - name: 'Deploy Apps'
         working-directory: ./kubernetes
         run: make
+        env:
+            KUBECONFIG: /github/home/.kube/config
