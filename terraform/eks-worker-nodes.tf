@@ -17,11 +17,11 @@ data "aws_autoscaling_groups" "groups" {
 }
 
 data "aws_autoscaling_group" "demo" {
-    name =  data.aws_autoscaling_groups.groups.names[0]
+  name = data.aws_autoscaling_groups.groups.names[0]
 }
 
 resource "aws_iam_role" "demo-node" {
-  name = "terraform-eks-demo-node"
+  name               = "terraform-eks-demo-node"
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -71,6 +71,6 @@ resource "aws_eks_node_group" "demo" {
   ]
 }
 
-output "desired_capacity"{
-    value =  data.aws_autoscaling_group.demo.desired_capacity
+output "desired_capacity" {
+  value = data.aws_autoscaling_group.demo.desired_capacity
 }
