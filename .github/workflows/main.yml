@@ -14,3 +14,6 @@ jobs:
         uses: actions/checkout@master
       - name: 'Terraform Format'
         uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.12.19
+          tf_actions_subcommand: 'fmt'
