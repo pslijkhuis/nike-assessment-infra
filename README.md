@@ -15,11 +15,11 @@ If you want to run terraform localy make sure to set the following variables:
 
 If these are set you deploy manually with the following command
 
-'''bash
+```bash
 terraform init
 terraform plan
 terraform apply
-'''
+```
 
 ## Application deployment
 
