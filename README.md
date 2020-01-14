@@ -41,3 +41,6 @@ The cluster and application are automatically deployed using Github Action. The 
 
 Pipeline configuration can be found at .github/actions
 
+## Airflow DAG's
+
+Airflow checks https://github.com/pslijkhuis/dags for new DAG's and add them to Airflow.
