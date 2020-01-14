@@ -13,8 +13,8 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@master
       - name: 'Terraform Format'
-        working-directory: terraform
         uses: hashicorp/terraform-github-actions@master
+        working-directory: terraform
         with:
           tf_actions_version: 0.12.19
           tf_actions_subcommand: 'fmt'
