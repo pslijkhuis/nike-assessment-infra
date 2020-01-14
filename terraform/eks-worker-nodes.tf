@@ -4,9 +4,24 @@
 #  * EKS Node Group to launch worker nodes
 #
 
+data "aws_autoscaling_groups" "groups" {
+  filter {
+    name   = "key"
+    values = ["eks:cluster-name"]
+  }
+
+  filter {
+    name   = "value"
+    values = [aws_eks_cluster.demo.name]
+  }
+}
+
+data "aws_autoscaling_group" "demo" {
+    name =  data.aws_autoscaling_groups.groups.names[0]
+}
+
 resource "aws_iam_role" "demo-node" {
   name = "terraform-eks-demo-node"
-
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -44,7 +59,7 @@ resource "aws_eks_node_group" "demo" {
   node_role_arn   = aws_iam_role.demo-node.arn
   subnet_ids      = aws_subnet.demo[*].id
   scaling_config {
-    desired_size = 1
+    desired_size = data.aws_autoscaling_group.demo.desired_capacity
     max_size     = 3
     min_size     = 1
   }
@@ -54,4 +69,8 @@ resource "aws_eks_node_group" "demo" {
     aws_iam_role_policy_attachment.demo-node-AmazonEKS_CNI_Policy,
     aws_iam_role_policy_attachment.demo-node-AmazonEC2ContainerRegistryReadOnly,
   ]
+}
+
+output "desired_capacity"{
+    value =  data.aws_autoscaling_group.demo.desired_capacity
 }
