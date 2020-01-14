@@ -14,7 +14,7 @@ add-repo:
 
 .PHONY: deploy-clusterautoscaler
 deploy-clusterautoscaler:
-	helm upgrade -i clusterautoscaler \
+	@helm upgrade -i clusterautoscaler \
 	     --namespace kube-system \
 	     --version $(CLUSTERAUTOSCALER_CHART_VERSION) \
 	     -f values.clusterautoscaler.yaml \
