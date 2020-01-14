@@ -71,9 +71,6 @@ jobs:
         uses: actions/checkout@master
       - name: 'Setup EKS connection'
         run: aws eks update-kubeconfig --name terraform-eks-demo
-        with:
-          name: kubernetes
-          path: .kube
         env:
            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
            AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
