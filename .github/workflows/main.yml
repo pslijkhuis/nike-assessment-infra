@@ -1,4 +1,4 @@
-name: Greet Everyone
+name: Deploy Nike Assessment
 # This workflow is triggered on pushes to the repository.
 on: [push]
 
