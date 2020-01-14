@@ -29,11 +29,11 @@ Currently three application get deployed to the cluster
 * Clusterautoscaler
 * Nginx ingress controller
 
-They all get deployed using Helm. Configuration per application can be found in kubernetes/<application name>
+They all get deployed using Helm. Configuration per application can be found in kubernetes/APPLICATION_NAME
 
 Pushing to the repo will trigger a deploy/update of the applications.
 
-If you want to run locally you can execute make in the kubernetes/<application name>  directory. If you want to deploy all application at once run make in kubernetes directory.
+If you want to run locally you can execute make in the kubernetes/APPLICATION_NAME directory. If you want to deploy all application at once run make in kubernetes directory.
 
 ## Github Actions
 
