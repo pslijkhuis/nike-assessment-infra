@@ -3,7 +3,9 @@ name: Deploy Nike Assessment
 on: [push]
 
 jobs:
-  build:
+  terraform:
+    env:
+        working-directory: terraform
     # Job name is Greeting
     name: Terraform
     # This job runs on Linux
@@ -14,7 +16,6 @@ jobs:
         uses: actions/checkout@master
       - name: 'Terraform Format'
         uses: hashicorp/terraform-github-actions@master
-        working-directory: terraform
         with:
           tf_actions_version: 0.12.19
           tf_actions_subcommand: 'fmt'
