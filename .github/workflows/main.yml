@@ -61,3 +61,25 @@ jobs:
            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
            AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  kubernetes:
+      # needs: terraform
+    name: Deploy Applications
+    runs-on: ubuntu-latest
+    container: pslijkhuis/ci-image:0.1
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: 'Setup EKS connection'
+        run: aws eks update-kubeconfig --name terraform-eks-demo
+        env:
+           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: 'Deploy Apps'
+        working-directory: ./kubernetes
+        run: make
+        env:
+           KUBECONFIG: /github/home/.kube/config
+           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
