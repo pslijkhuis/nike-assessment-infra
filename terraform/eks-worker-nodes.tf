@@ -44,7 +44,7 @@ resource "aws_eks_node_group" "demo" {
   node_role_arn   = "${aws_iam_role.demo-node.arn}"
   subnet_ids      = "${aws_subnet.demo[*].id}"
   scaling_config {
-    desired_size = 2
+    desired_size = 1
     max_size     = 3
     min_size     = 1
   }
