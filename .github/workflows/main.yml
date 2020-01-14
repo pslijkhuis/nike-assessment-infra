@@ -77,7 +77,7 @@ jobs:
            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: 'Deploy Apps'
         working-directory: ./kubernetes
-        run: kubectl get nodes
+        run: make
         env:
            KUBECONFIG: /github/home/.kube/config
            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
