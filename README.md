@@ -23,11 +23,12 @@ terraform apply
 
 ## Application deployment
 
-Currently three application get deployed to the cluster
+Currently four application get deployed to the cluster
 
 * Airflow
 * Clusterautoscaler
 * Nginx ingress controller
+* External-dns
 
 They all get deployed using Helm. Configuration per application can be found in kubernetes/APPLICATION_NAME
 
