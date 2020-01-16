@@ -1,6 +1,7 @@
 include ../common.mk
 include ../apps.mk
 
+CF_KEY=$(shell aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:eu-west-1:252195394038:secret:cloudflare-nIM7ie | jq --raw-output .SecretString | jq -r ."CLOUDFLARE_KEY")
 
 .PHONY: deploy
 deploy: \
@@ -18,5 +19,5 @@ deploy-externaldns:
 	     --namespace kube-system \
 	     --version $(EXTERNALDNS_CHART_VERSION) \
 	     -f values.externaldns.yaml \
-	     --set cloudflare.apiKey=$(CLOUFLARE_KEY) \
+	     --set cloudflare.apiKey=$(CF_KEY) \
 	     stable/external-dns
