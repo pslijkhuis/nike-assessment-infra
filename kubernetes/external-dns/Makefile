@@ -15,7 +15,7 @@ add-repo:
 
 .PHONY: deploy-externaldns
 deploy-externaldns:
-	helm upgrade -i external-dns \
+	@helm upgrade -i external-dns \
 	     --namespace kube-system \
 	     --version $(EXTERNALDNS_CHART_VERSION) \
 	     -f values.externaldns.yaml \
